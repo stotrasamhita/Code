@@ -1,7 +1,14 @@
 import sys
 import re
 
-No_of_lines_in_stanza =4
+No_of_lines_in_stanza=4
+
+if No_of_lines_in_stanza==2:
+	tag='twolineindentedshlokanum'
+elif No_of_lines_in_stanza==3:
+	tag='threelineindentedshlokanum'
+elif No_of_lines_in_stanza==4:
+	tag='fourlineindentedshlokanum'
 
 if len(sys.argv)==3:
 	infile=sys.argv[1]
@@ -20,6 +27,7 @@ except IOError:
 	exit()
 else:
 	f.close()
+
 	Shloka=str(' '.join(s))
 	Shloka = re.sub('~N','G',Shloka)
 	Shloka = re.sub('N\^','G',Shloka)
@@ -39,15 +47,15 @@ else:
 	Shloka = re.sub('RI','rI',Shloka)
 	Shloka = re.sub('Sh','S',Shloka)
 	Shloka = re.sub('sh','z',Shloka)
-	Shloka = re.sub('\.\.\n','||\n</fourlineindentedshlokanum>\n<fourlineindentedshlokanum>\n',Shloka)
+	Shloka = re.sub('\.\.\n','||\n</'+tag+'>\n<'+tag+'>\n',Shloka)
 	Shloka = re.sub('\.\.','||',Shloka)
 	Shloka = re.sub('\.h',' ',Shloka)
 	Shloka = re.sub('\.n','M',Shloka)
 	Shloka = re.sub(' \.\n','|\n',Shloka)
 	Shloka = re.sub('\.',' ',Shloka)
 	Shloka = re.sub('##','',Shloka)
-	Shloka= '<fourlineindentedshlokanum>\n'+Shloka+'</lipi>'
-	s1 =Shloka.rsplit('<fourlineindentedshlokanum>',1)
+	Shloka= '<'+tag+'>\n'+Shloka+'</lipi>'
+	s1 =Shloka.rsplit('<'+tag+'>',1)
 	Shloka = '<lipi>'.join(s1)
 	print Shloka
 	print infile+' Parsed successfully'
