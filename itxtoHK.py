@@ -36,6 +36,7 @@ else:
 	Shloka = re.sub('o','O',Shloka)
 	Shloka = re.sub('j~n','jJ',Shloka)
 	Shloka = re.sub('GY','jJ',Shloka)
+	Shloka = re.sub('RI','rI',Shloka)
 	Shloka = re.sub('Sh','S',Shloka)
 	Shloka = re.sub('sh','z',Shloka)
 	Shloka = re.sub('\.\.\n','||\n</fourlineindentedshlokanum>\n<fourlineindentedshlokanum>\n',Shloka)
