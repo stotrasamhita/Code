@@ -1,6 +1,8 @@
 import sys
 import re
 
+No_of_lines_in_stanza =4
+
 if len(sys.argv)==3:
 	infile=sys.argv[1]
 	outfile=sys.argv[2]
@@ -27,6 +29,7 @@ else:
 	Shloka = re.sub('ii','I',Shloka)
 	Shloka = re.sub('aa','A',Shloka)
 	Shloka = re.sub('ch','c',Shloka)
+	Shloka = re.sub('Ch','ch',Shloka)
 	Shloka = re.sub('e','E',Shloka)
 	Shloka = re.sub('shh','S',Shloka)
 	Shloka = re.sub('ksh','kS',Shloka)
@@ -42,6 +45,9 @@ else:
 	Shloka = re.sub(' \.\n','|\n',Shloka)
 	Shloka = re.sub('\.',' ',Shloka)
 	Shloka = re.sub('##','',Shloka)
+	Shloka= '<fourlineindentedshlokanum>\n'+Shloka+'</lipi>'
+	s1 =Shloka.rsplit('<fourlineindentedshlokanum>',1)
+	Shloka = '<lipi>'.join(s1)
 	print Shloka
 	print infile+' Parsed successfully'
 
